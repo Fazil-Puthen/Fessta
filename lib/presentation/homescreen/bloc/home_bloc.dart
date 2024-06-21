@@ -32,6 +32,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       else{
       emit(Searchsuccess(filtered: filtered));}
     }
+    else if(filter.isEmpty){
+      emit(Empty());
+    }
   }
 
   FutureOr<void> fetchname(FetchNames event, Emitter<HomeState> emit) async{
@@ -43,14 +46,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final result=await http.get(resulturl);
     if(result.statusCode==200){
     List<dynamic> decoded=json.decode(result.body);
-    usernames = decoded.map((json) => json['name'].toString()).toList();
-    print('this is the usernames $usernames');}
+    usernames = decoded.map((json) => json['name'].toString()).toList();}
     else{
-      print('something went wrong');
+      return null;
     }
     }
     catch(e){
-      emit(Empty(error: e.toString()));
+    return null;
     }
 
   }

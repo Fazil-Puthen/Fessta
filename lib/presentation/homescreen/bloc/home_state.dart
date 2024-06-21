@@ -16,9 +16,5 @@ class NoSuggestion extends HomeState{}
 
 class Loading extends HomeState{}
 
-class Empty extends HomeState{
-  final String error;
-
-  Empty({required this.error});
-}
+class Empty extends HomeState{}
 
