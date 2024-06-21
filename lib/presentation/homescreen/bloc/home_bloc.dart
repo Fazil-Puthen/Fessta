@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'package:bloc/bloc.dart';
-import 'package:fesste/models/restaurant_model.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 part 'home_event.dart';
@@ -28,21 +26,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                         final queylower=filter.toLowerCase();
                         return itemlower.contains(queylower);
                       }).toList();
-                      print('this is filterd $filtered');
       if(filtered.isEmpty){
         emit(NoSuggestion());
       }
       else{
       emit(Searchsuccess(filtered: filtered));}
     }
-    else if(filter.isEmpty){
-      emit(Empty());
-    }
   }
 
   FutureOr<void> fetchname(FetchNames event, Emitter<HomeState> emit) async{
 
-    print('fetvhing the http ooooooooooooooooooiiiiiiiiiiiiiiiiiii');
     const url='https://jsonplaceholder.typicode.com/users';
 
     final resulturl=Uri.parse(url);
@@ -51,13 +44,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if(result.statusCode==200){
     List<dynamic> decoded=json.decode(result.body);
     usernames = decoded.map((json) => json['name'].toString()).toList();
-    print('this is the usernames ${usernames}');}
+    print('this is the usernames $usernames');}
     else{
       print('something went wrong');
     }
     }
     catch(e){
-      print('this is the error ${e.toString()}');
+      emit(Empty(error: e.toString()));
     }
 
   }

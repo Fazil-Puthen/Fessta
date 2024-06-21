@@ -44,8 +44,8 @@ class RestCard extends StatelessWidget {
               Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [Text(restaturant.name,style:acmebig,),
-              SizedBox(height: 3,),
-              Text('cuisine type',style: acmesmall,)],
+              const SizedBox(height: 3,),
+              Text(restaturant.cuisine,style: acmesmall,)],
             ),
             
             //Rating field
@@ -60,7 +60,7 @@ class RestCard extends StatelessWidget {
               child:Center(child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:[ Text(restaturant.rating.toString()),
-                SizedBox(width: 3,),
+                const SizedBox(width: 3,),
               const Icon(Icons.star_border_purple500,size: 15,color: Colors.amber,)]),),
             )],),
           )

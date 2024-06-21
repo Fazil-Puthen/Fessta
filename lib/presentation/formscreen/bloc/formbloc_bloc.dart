@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:fesste/models/restaurant_model.dart';
-import 'package:fesste/presentation/homescreen/bloc/home_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 
@@ -17,6 +16,7 @@ class FormblocBloc extends Bloc<FormblocEvent, FormblocState> {
     });
     on<Imageselction>(imagepicker);
     on<AddRestaurant>(addrestaurant);
+    on<FormError>(formerror);
   }
 
   List<RestaurantModel> restaurantlist=[];
@@ -37,5 +37,9 @@ class FormblocBloc extends Bloc<FormblocEvent, FormblocState> {
    restaurantlist.add(event.restmodel);
    emit(Restaurantlist(reslist: restaurantlist));
 
+  }
+
+  FutureOr<void> formerror(FormError event, Emitter<FormblocState> emit) {
+    emit(ErrorState());
   }
 }

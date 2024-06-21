@@ -10,3 +10,5 @@ final RestaurantModel restmodel;
 
 AddRestaurant({required this.restmodel});
 }
+
+class FormError extends FormblocEvent{}

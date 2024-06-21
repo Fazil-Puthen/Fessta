@@ -13,15 +13,15 @@ class Splash extends StatelessWidget {
   final screenwidth = MediaQuery.of(context).size.width;
   final screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
-       backgroundColor: Colors.red[700],
+      //  backgroundColor: Colors.red[700],
       body:FlutterSplashScreen.scale(
         animationDuration: const Duration(seconds: 4),
         duration:const  Duration(seconds: 5),
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.white,
           childWidget: SizedBox(
             height: screenwidth*0.7,
             width: screenheight*0.7,
-            child: Image.asset("asset/Tomato (1).png"),
+            child: Image.asset("asset/festatomato.jpg"),
           ),
           onAnimationEnd: () => debugPrint("On Fade In End"),
           nextScreen: HomeScreen(),

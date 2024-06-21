@@ -15,3 +15,5 @@ class Restaurantlist extends FormblocState{
 
   Restaurantlist({required this.reslist});
 }
+
+class ErrorState extends FormblocState{}
